@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Listar IVM</title>
+</head>
+<body style="padding:20px">
+{% if cursor %}
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>Nº Série</th>
+                <th>Fabricante</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in cursor %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td><form action="select" method="post"></form>
+                        <a href="IVM/select?IVM={{record[0]}}">Selecionar</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p> Erro: não foi possível obter dados da base de dados!</p>
+{% endif %}
+</body>
+</html>
